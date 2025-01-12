@@ -19,7 +19,9 @@ class Todo(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.id
 
-
+with app.app_context():
+    db.create_all()
+    
 @app.route("/")
 def homePage():
     return render_template("homepage.html", pagetitle="Home Page")
