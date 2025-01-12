@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %} 
+
+
+{% block body %}
+
+<h1>Update Task</h1>
+<form action="/update" method="POST">
+    <label for="task_id">Select Task to Update:</label>
+    <select id="task_id" name="task_id" required>
+        {% for task in tasks %}
+        <option value="{{ task.id }}">{{ task.content }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <label for="content">Updated Task Content:</label>
+    <input type="text" id="content" name="content" placeholder="Enter updated task content" required>
+    <br><br>
+    <button type="submit">Update Task</button>
+</form>
+
+<div class="recent-tasks">
+    <h3>Last 5 Tasks</h3>
+    <ul>
+        {% for task in tasks %}
+        <li>{{ task.content }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

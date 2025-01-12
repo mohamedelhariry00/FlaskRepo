@@ -6,5 +6,13 @@
 
 
 {% block body %}
-<h1>Hello From Home Page </h1> 
+<h1>Task Manager</h1>
+<form action="/add" method="POST">
+    <label for="content">Task Content:</label>
+    <input type="text" id="content" name="content" placeholder="Enter your task here" required>
+    <br><br>
+    <button type="submit" class="btn-new">New Task</button>
+    <a href="/update" class="btn-update">Update Task</a>
+</form>
+
 {% endblock %}
