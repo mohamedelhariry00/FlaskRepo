@@ -1,18 +1,41 @@
 {% extends 'base.html' %}
 
 {% block head %}
-
 {% endblock %} 
-
 
 {% block body %}
 <h1>Task Manager</h1>
 <form action="/add" method="POST">
-    <label for="content">Task Content:</label>
-    <input type="text" id="content" name="content" placeholder="Enter your task here" required>
-    <br><br>
+    <label for="content">Task Title:</label>
+    <input type="text" id="content" name="content" placeholder="Enter task title" required><br><br>
+
+    <label for="task_type">Task Type:</label>
+    <select name="task_type" id="task_type">
+        <option value="Work">Work</option>
+        <option value="Study">Study</option>
+        <option value="Personal">Personal</option>
+        <option value="Fitness">Fitness</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Event">Event</option>
+    </select><br><br>
+
+    <label for="description">Description:</label><br>
+    <textarea name="description" id="description" rows="3" cols="40" placeholder="Describe the task..."></textarea><br><br>
+
+    <label for="priority">Priority:</label>
+    <select name="priority" id="priority">
+        <option value="High">High</option>
+        <option value="Medium" selected>Medium</option>
+        <option value="Low">Low</option>
+    </select><br><br>
+
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" name="start_date"><br><br>
+
+    <label for="end_date">End Date:</label>
+    <input type="date" id="end_date" name="end_date"><br><br>
+
     <button type="submit" class="btn-new">New Task</button>
     <a href="/update" class="btn-update">Update Task</a>
 </form>
-
 {% endblock %}

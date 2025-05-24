@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
 
 {% block head %}
-
 {% endblock %} 
 
-
 {% block body %}
-
 <h1>Update Task</h1>
+
 <form action="/update" method="POST">
     <label for="task_id">Select Task to Update:</label>
     <select id="task_id" name="task_id" required>
@@ -16,11 +14,44 @@
         {% endfor %}
     </select>
     <br><br>
-    <label for="content">Updated Task Content:</label>
-    <input type="text" id="content" name="content" placeholder="Enter updated task content" required>
+
+    <label for="content">Updated Task Title:</label>
+    <input type="text" id="content" name="content" placeholder="Enter task title" required>
     <br><br>
+
+    <label for="task_type">Task Type:</label>
+    <select name="task_type" id="task_type">
+        <option value="Work">Work</option>
+        <option value="Study">Study</option>
+        <option value="Personal">Personal</option>
+        <option value="Fitness">Fitness</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Event">Event</option>
+    </select>
+    <br><br>
+
+    <label for="description">Description:</label><br>
+    <textarea name="description" id="description" rows="3" cols="40" placeholder="Update the task description..."></textarea>
+    <br><br>
+
+    <label for="priority">Priority:</label>
+    <select name="priority" id="priority">
+        <option value="High">High</option>
+        <option value="Medium" selected>Medium</option>
+        <option value="Low">Low</option>
+    </select>
+    <br><br>
+
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" name="start_date"><br><br>
+
+    <label for="end_date">End Date:</label>
+    <input type="date" id="end_date" name="end_date"><br><br>
+
     <button type="submit">Update Task</button>
 </form>
+
+<hr>
 
 <div class="recent-tasks">
     <h3>Last 5 Tasks</h3>

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <style>
+        .message-success {
+            color: green;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        .message-fail {
+            color: red;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        .back-link {
+            margin-top: 30px;
+            display: inline-block;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% if success %}
+            <p class="message-success">✅ Task updated successfully!</p>
+        {% else %}
+            <p class="message-fail">❌ Failed to update task. {{ error_message }}</p>
+        {% endif %}
+
+        <a href="/" class="back-link">Back to Home</a>
+        <a href="/update" class="back-link">Try Another Update</a>
+    </div>
+{% endblock %}
