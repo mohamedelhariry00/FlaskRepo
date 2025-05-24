@@ -5,6 +5,7 @@ from datetime import datetime
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
 
 class Todo(db.Model):
@@ -29,25 +30,27 @@ def homePage():
 
 @app.route('/add', methods=['POST'])
 def add():
-    task_content = request.form['content']
+    content = request.form['content']
     task_type = request.form.get('task_type')
     description = request.form.get('description')
     priority = request.form.get('priority')
     start_date = request.form.get('start_date')
     end_date = request.form.get('end_date')
 
-    new_task = Todo(
-        content=task_content,
-        task_type=task_type,
-        description=description,
-        priority=priority,
-        start_date=datetime.strptime(start_date, "%Y-%m-%d") if start_date else None,
-        end_date=datetime.strptime(end_date, "%Y-%m-%d") if end_date else None
-    )
-
-    db.session.add(new_task)
-    db.session.commit()
-    return render_template('confirm.html', pagetitle="Confirmation Page", task=task_content)
+    try:
+        new_task = Todo(
+            content=content,
+            task_type=task_type,
+            description=description,
+            priority=priority,
+            start_date=datetime.strptime(start_date, '%Y-%m-%d').date() if start_date else None,
+            end_date=datetime.strptime(end_date, '%Y-%m-%d').date() if end_date else None
+        )
+        db.session.add(new_task)
+        db.session.commit()
+        return render_template('confirm.html', pagetitle="Confirmation Page", task=content)
+    except Exception as e:
+        return f"Failed to add task: {str(e)}", 500
 
 @app.route('/update', methods=['GET', 'POST'])
 def update():
@@ -66,7 +69,6 @@ def update():
                 start_date = request.form.get('start_date')
                 end_date = request.form.get('end_date')
 
-                from datetime import datetime
                 task.start_date = datetime.strptime(start_date, '%Y-%m-%d').date() if start_date else None
                 task.end_date = datetime.strptime(end_date, '%Y-%m-%d').date() if end_date else None
 
@@ -78,4 +80,6 @@ def update():
             return render_template('update_result.html', success=False, error_message="Task not found.")
     return render_template('update.html', pagetitle="Update Page", tasks=tasks)
 
-
+#  Run on port 8000
+if __name__ == "__main__":
+    app.run(debug=True, port=8000)
