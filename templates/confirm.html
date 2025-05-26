@@ -3,12 +3,23 @@
 {% block head %}
 {% endblock %} 
 
-
 {% block body %}
+<div class="confirmation-box">
+    <h1>Task Confirmation</h1>
+    <p class="task-message">The following task has been processed successfully:</p>
 
-<h1>Task Confirmation</h1>
-<p class="task">{{ task }}</p>
-<p>Welcome to your task! Feel free to manage it as needed.</p>
-<a href="/">Return to Task Manager</a>
+    <div class="task-details">
+        <p><strong>Content:</strong> {{ task.content }}</p>
+        <p><strong>Type:</strong> {{ task.task_type }}</p>
+        <p><strong>Description:</strong> {{ task.description }}</p>
+        <p><strong>Priority:</strong> {{ task.priority }}</p>
+        <p><strong>Start Date:</strong> {{ task.start_date }}</p>
+        <p><strong>End Date:</strong> {{ task.end_date }}</p>
+        <p><strong>Date Created:</strong> {{ task.date_created.strftime('%Y-%m-%d %H:%M') }}</p>
+    </div>
 
+    <br>
+    <a href="/" class="btn">Add New Task</a>
+    <a href="/update" class="btn">Update Task</a>
+</div>
 {% endblock %}
