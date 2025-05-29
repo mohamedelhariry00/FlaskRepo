@@ -146,4 +146,4 @@ Once the server is running, open your browser and go to:
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/mohamed-elhariry-/)
 
->> ![LinkedIn] (https://www.linkedin.com/in/mohamed-elhariry-/)
+(https://www.linkedin.com/in/mohamed-elhariry-/)
