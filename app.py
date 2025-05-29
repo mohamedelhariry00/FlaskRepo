@@ -53,23 +53,38 @@ def add():
         return f"Failed to add task: {e}"
 
 
+
 @app.route('/update', methods=['GET', 'POST'])
 def update():
     tasks = Todo.query.order_by(Todo.date_created.desc()).limit(5).all()
+    
     if request.method == 'POST':
         task_id = int(request.form['task_id'])
+        new_content = request.form['content']
+        new_description = request.form.get('description', '')
+        start_date_str = request.form.get('start_date', '')
+        end_date_str = request.form.get('end_date', '')
+
         task = Todo.query.get(task_id)
+
         if task:
-            task.content = request.form['content']
-            task.task_type = request.form.get('task_type')
-            task.description = request.form.get('description')
-            task.priority = request.form.get('priority')
-            task.start_date = request.form.get('start_date')
-            task.end_date = request.form.get('end_date')
-            db.session.commit()
-            return render_template('confirm.html', pagetitle="Confirmation Page", task=task)
+            task.content = new_content
+            task.description = new_description
+
+            if start_date_str:
+                task.start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
+            if end_date_str:
+                task.end_date = datetime.strptime(end_date_str, "%Y-%m-%d").date()
+
+            try:
+                db.session.commit()
+                return render_template('confirm.html', pagetitle="Confirmation Page", task=task)
+            except Exception as e:
+                return f"Failed to update task: {e}"
+
         else:
-            return render_template('update_result.html', result="failed")
+            return "Task not found!", 404
+
     return render_template('update.html', pagetitle="Update Page", tasks=tasks)
 
 #  Run on port 8000

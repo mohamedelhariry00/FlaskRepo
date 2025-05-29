@@ -16,7 +16,6 @@ h1, h3 {
     margin-bottom: 20px;
 }
 
-
 form {
     background-color: #ffffff;
     padding: 20px;
@@ -44,30 +43,23 @@ select {
 }
 
 button,
-a.btn-update {
+.btn {
     display: inline-block;
     padding: 10px 18px;
     font-size: 14px;
     color: #fff;
     background-color: #007bff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     text-decoration: none;
     cursor: pointer;
-    margin-right: 10px;
+    margin: 10px 10px 0 0;
+    transition: background-color 0.3s ease;
 }
 
 button:hover,
-a.btn-update:hover {
+.btn:hover {
     background-color: #0056b3;
-}
-
-.btn-new {
-    background-color: #28a745;
-}
-
-.btn-new:hover {
-    background-color: #218838;
 }
 
 .recent-tasks {
@@ -91,18 +83,25 @@ a.btn-update:hover {
 }
 
 .confirmation-box {
-    max-width: 500px;
-    margin: 40px auto;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
     background-color: #fff;
-    padding: 25px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
     text-align: center;
 }
 
+.confirmation-box h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
 .task-message {
-    margin-bottom: 15px;
     font-size: 16px;
+    margin-bottom: 25px;
+    color: #555;
 }
 
 .task-details {
@@ -110,6 +109,11 @@ a.btn-update:hover {
     padding: 10px;
     border-radius: 4px;
     font-size: 15px;
+    color: #444;
+}
+
+.task-details p {
+    margin: 12px 0;
 }
 
 .message-success {
